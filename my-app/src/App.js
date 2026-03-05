@@ -4,11 +4,12 @@ import React, { useState } from "react"
 // import exercise components
 import RepetitionExercise from "./components/RepetitionExercise"
 import DurationExercise from "./components/DurationExercise"
+import RunningExercise from "./components/RunningExercise"
 
 // array of exercises, each has a name and a type (properties)
 const exercises = [
   { name: "Push Ups", type: "repetition" },
-  { name: "Running", type: "duration" },
+  { name: "Running", type: "running" },
   { name: "Plank", type: "duration" },
 ]
 
@@ -40,11 +41,13 @@ function App() {
       {/* back button sets selected back to null which shows the menu again */}
       <button onClick={() => setSelected(null)}>Back</button>
 
-      {/* if the type is repetition show RepetitionExercise, otherwise show DurationExercise (ternary operator condition ? doThisIfTrue : doThisIfFalse)*/}
+      
       {selected.type === "repetition"
-        ? <RepetitionExercise name={selected.name} />
-        : <DurationExercise name={selected.name} />
-      }
+         ? <RepetitionExercise name={selected.name} />
+         : selected.type === "running"
+            ? <RunningExercise name={selected.name} />
+            : <DurationExercise name={selected.name} />
+}
     </div>
   )
 }
